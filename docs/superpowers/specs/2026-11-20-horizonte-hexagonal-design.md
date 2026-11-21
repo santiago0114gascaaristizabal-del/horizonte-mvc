@@ -1,6 +1,6 @@
 # Diseño de migración de Horizonte a arquitectura hexagonal
 
-Estado: propuesta para revisión del estudiante; pendiente de aprobación antes de implementar.
+Estado: aprobado por el estudiante el 20 de noviembre de 2026 e implementado.
 Revisión independiente de planificación: completada, sin preguntas importantes pendientes.
 Autor del proyecto: Santiago Gasca Aristizabal.
 Rama elegida por el estudiante: `arquitectura-hexagonal` en el repositorio existente.

@@ -1,4 +1,4 @@
-package edu.horizonte.controlador;
+package edu.horizonte.infrastructure.adapter.in.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

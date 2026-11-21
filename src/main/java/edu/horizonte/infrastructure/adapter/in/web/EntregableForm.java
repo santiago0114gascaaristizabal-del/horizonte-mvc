@@ -1,4 +1,4 @@
-package edu.horizonte.controlador;
+package edu.horizonte.infrastructure.adapter.in.web;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;

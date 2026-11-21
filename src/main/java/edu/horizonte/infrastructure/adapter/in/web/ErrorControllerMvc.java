@@ -1,5 +1,5 @@
-package edu.horizonte.controlador;
-import edu.horizonte.servicio.RegistroNoEncontrado;
+package edu.horizonte.infrastructure.adapter.in.web;
+import edu.horizonte.domain.exception.RegistroNoEncontrado;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
-package edu.horizonte.controlador;
-import edu.horizonte.servicio.*;
+package edu.horizonte.infrastructure.adapter.in.web;
+import edu.horizonte.domain.exception.*;
+import edu.horizonte.domain.port.in.SeguimientoUseCase;
 import jakarta.validation.Valid;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/entregables")
 public class EntregableController {
-    private final SeguimientoService servicio;
-    public EntregableController(SeguimientoService servicio) { this.servicio=servicio; }
+    private final SeguimientoUseCase servicio;
+    public EntregableController(SeguimientoUseCase servicio) { this.servicio=servicio; }
 
     @ModelAttribute
     public void comunes(Model m) {
@@ -59,13 +59,13 @@ public class EntregableController {
         aviso.addFlashAttribute("exito",id==null?"Registro creado.":"Cambios guardados.");
         return "redirect:/entregables/"+guardado.getId();
     }
-    private edu.horizonte.modelo.Entregable guardarSiExisteProyecto(Long id, EntregableForm f, BindingResult errores) {
+    private edu.horizonte.domain.model.Entregable guardarSiExisteProyecto(Long id, EntregableForm f, BindingResult errores) {
         try { return servicio.guardarEntregable(id,f.titulo(),f.fecha(),f.proyectoId()); }
         catch (RegistroNoEncontrado ex) {
             errores.rejectValue("proyectoId","proyecto.inexistente",ex.getMessage());
             return null;
         }
-        catch (DataIntegrityViolationException ex) {
+        catch (RelacionNoValida ex) {
             errores.rejectValue("proyectoId","proyecto.relacion","No se pudo guardar la relación. Comprueba el proyecto y vuelve a intentar.");
             return null;
         }

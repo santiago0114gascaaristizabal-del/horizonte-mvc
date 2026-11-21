@@ -1,10 +1,10 @@
-package edu.horizonte.modelo;
+package edu.horizonte.infrastructure.adapter.out.persistence;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name="proyectos")
-public class Proyecto {
+public class ProyectoJpaEntity {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Nationalized @Column(nullable=false,length=120)
@@ -12,8 +12,8 @@ public class Proyecto {
     @Nationalized @Column(nullable=false,length=500)
     private String descripcion;
 
-    protected Proyecto() {}
-    public Proyecto(String nombre, String descripcion) { actualizar(nombre, descripcion); }
+    protected ProyectoJpaEntity() {}
+    public ProyectoJpaEntity(String nombre, String descripcion) { actualizar(nombre, descripcion); }
     public void actualizar(String nombre, String descripcion) {
         this.nombre=nombre.strip();
         this.descripcion=descripcion.strip();

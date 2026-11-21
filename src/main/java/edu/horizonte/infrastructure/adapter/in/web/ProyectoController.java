@@ -1,7 +1,7 @@
-package edu.horizonte.controlador;
-import edu.horizonte.servicio.*;
+package edu.horizonte.infrastructure.adapter.in.web;
+import edu.horizonte.domain.exception.*;
+import edu.horizonte.domain.port.in.SeguimientoUseCase;
 import jakarta.validation.Valid;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/proyectos")
 public class ProyectoController {
-    private final SeguimientoService servicio;
-    public ProyectoController(SeguimientoService servicio) { this.servicio=servicio; }
+    private final SeguimientoUseCase servicio;
+    public ProyectoController(SeguimientoUseCase servicio) { this.servicio=servicio; }
 
     @ModelAttribute
     public void comunes(Model m) {
@@ -62,7 +62,7 @@ public class ProyectoController {
     @PostMapping("/{id}/eliminar")
     public String eliminar(@PathVariable Long id, RedirectAttributes aviso) {
         try { servicio.eliminarProyecto(id); }
-        catch (ProyectoConEntregables | DataIntegrityViolationException ex) {
+        catch (ProyectoConEntregables ex) {
             aviso.addFlashAttribute("error","Elimina o reasigna los entregables antes de borrar el proyecto.");
             return "redirect:/proyectos/"+id;
         }

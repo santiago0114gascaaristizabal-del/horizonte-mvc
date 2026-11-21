@@ -1,4 +1,4 @@
-package edu.horizonte.controlador;
+package edu.horizonte.infrastructure.adapter.in.web;
 import jakarta.validation.constraints.*;
 public record ProyectoForm(
     @NotBlank(message="Escribe un nombre.") @Size(max=120,message="Máximo 120 caracteres.") String nombre,

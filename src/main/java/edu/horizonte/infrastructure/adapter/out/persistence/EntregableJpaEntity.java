@@ -1,11 +1,11 @@
-package edu.horizonte.modelo;
+package edu.horizonte.infrastructure.adapter.out.persistence;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name="entregables")
-public class Entregable {
+public class EntregableJpaEntity {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Nationalized @Column(nullable=false,length=120)
@@ -14,11 +14,11 @@ public class Entregable {
     private LocalDate fecha;
     @ManyToOne(fetch=FetchType.LAZY,optional=false)
     @JoinColumn(name="proyecto_id",nullable=false,foreignKey=@ForeignKey(name="fk_entregables_proyecto"))
-    private Proyecto proyecto;
+    private ProyectoJpaEntity proyecto;
 
-    protected Entregable() {}
-    public Entregable(String titulo, LocalDate fecha, Proyecto proyecto) { actualizar(titulo, fecha, proyecto); }
-    public void actualizar(String titulo, LocalDate fecha, Proyecto proyecto) {
+    protected EntregableJpaEntity() {}
+    public EntregableJpaEntity(String titulo, LocalDate fecha, ProyectoJpaEntity proyecto) { actualizar(titulo, fecha, proyecto); }
+    public void actualizar(String titulo, LocalDate fecha, ProyectoJpaEntity proyecto) {
         this.titulo=titulo.strip();
         this.fecha=fecha;
         this.proyecto=proyecto;
@@ -26,5 +26,5 @@ public class Entregable {
     public Long getId() { return id; }
     public String getTitulo() { return titulo; }
     public LocalDate getFecha() { return fecha; }
-    public Proyecto getProyecto() { return proyecto; }
+    public ProyectoJpaEntity getProyecto() { return proyecto; }
 }
